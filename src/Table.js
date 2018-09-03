@@ -44,7 +44,7 @@ class Table extends Component {
         for (let i = y - 1; i < y + 2; i++) {
             for (let j = x - 1; j < x + 2; j++) {
                 if (i !== y || j !== x) {
-                    if (i >= 0 && i < this.state.columns && j >= 0 && j < this.state.rows) {
+                    if (i >= 0 && i < this.state.rows && j >= 0 && j < this.state.columns) {
                         if (this.state.globalArray[this.index(j, i)] == 66) {
 
                             liveNeighbours++;
@@ -86,33 +86,66 @@ class Table extends Component {
 
     drawNewArray = () => {
         this.setState({
-            globalArray: this.drawNeighbors(),
+            neighbours: this.drawNeighbors(),
         })
 
     }
 
     componentWillMount () {
-
-
-        this.idTimeout = setTimeout(() => {
+        this.drawMines();
             this.drawNewArray();
-        }, 10000)
     }
 
     componentWillUnmount () {
         clearTimeout(this.idTimeout);
     }
 
+    handleClick = (e) => {
+        console.log(e.target);
+        switch (e.target.id) {
+            case "0": console.log('Trafiles zera');
+                e.target.innerText = "0";
+                e.target.classList.add("one");
+            break;
+
+            case "1": console.log('Trafiles jedynki');
+               e.target.innerText = "1";
+                e.target.classList.add("one");
+            break;
+
+            case "2": console.log('Trafiles dwojki');
+                e.target.innerText = "2";
+                e.target.classList.add("one");
+            break;
+
+            case "3": console.log('Trafiles trojki');
+                e.target.innerText = "3";
+                e.target.classList.add("one");
+            break;
+
+            case "4": console.log('Trafiles czworke');
+                e.target.innerText = "4";
+                e.target.classList.add("one");
+            break;
+
+            case "66": console.log('MINA :(');
+                e.target.innerText = "X";
+                e.target.classList.add("mine");
+            break;
+
+        }
+    }
+
 
     render() {
-            
-            const divs = this.state.globalArray.map((div, index) => {
-                return <div className="block" id={div} key={index}>{div}</div>
+
+            const divs = this.state.neighbours.map((div, index) => {
+                return <div onClick={this.handleClick} className="block" id={div} key={index}>
+                </div>
             });
         return (
             <div className="containerBlocks" >
                 {divs}
-
             </div>
         );
     }

@@ -26,3 +26,10 @@ body {
   height: 20px;
   border: 1px solid black;
 }
+
+.one {
+  background-color: green;
+}
+.mine {
+  background-color: deeppink;
+}
