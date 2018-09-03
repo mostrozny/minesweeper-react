@@ -20,8 +20,8 @@ class Table extends Component {
         let divs = this.state.globalArray;
 
         for (let i=0; i<columns*rows; i++) {
-            const mine = Math.floor((Math.random() * 10) + 1);
-            if (mine < 9) {
+            const mine = Math.floor((Math.random() * 20) + 1);
+            if (mine < 19) {
                 divs.push(0);
             } else {
                 divs.push(66)
@@ -63,8 +63,12 @@ class Table extends Component {
                 return 2;
             } else if (liveNeighbours === 3) {
                 return 3;
-            } else if (liveNeighbours > 3) {
+            } else if (liveNeighbours === 4) {
                 return 4;
+            }  else if (liveNeighbours === 5) {
+                return 5;
+            } else if (liveNeighbours === 6) {
+                return 6;
             }
         } else if (this.state.globalArray[this.index(x, y)] == 66) {
             return 66
@@ -131,6 +135,16 @@ class Table extends Component {
                 case "4":
                     console.log('Trafiles czworke');
                     e.target.innerText = "4";
+                    e.target.classList.add("one");
+                    break;
+                case "5":
+                    console.log('Trafiles piatke');
+                    e.target.innerText = "5";
+                    e.target.classList.add("one");
+                    break;
+                case "6":
+                    console.log('Trafiles szesc');
+                    e.target.innerText = "6";
                     e.target.classList.add("one");
                     break;
 
