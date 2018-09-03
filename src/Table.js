@@ -101,38 +101,47 @@ class Table extends Component {
     }
 
     handleClick = (e) => {
-        console.log(e.target);
-        switch (e.target.id) {
-            case "0": console.log('Trafiles zera');
-                e.target.innerText = "0";
-                e.target.classList.add("one");
-            break;
+        e.preventDefault();
+        if (e.button === 0) {
+            switch (e.target.id) {
+                case "0":
+                    console.log('Trafiles zera');
+                    e.target.innerText = "0";
+                    e.target.classList.add("one");
+                    break;
 
-            case "1": console.log('Trafiles jedynki');
-               e.target.innerText = "1";
-                e.target.classList.add("one");
-            break;
+                case "1":
+                    console.log('Trafiles jedynki');
+                    e.target.innerText = "1";
+                    e.target.classList.add("one");
+                    break;
 
-            case "2": console.log('Trafiles dwojki');
-                e.target.innerText = "2";
-                e.target.classList.add("one");
-            break;
+                case "2":
+                    console.log('Trafiles dwojki');
+                    e.target.innerText = "2";
+                    e.target.classList.add("one");
+                    break;
 
-            case "3": console.log('Trafiles trojki');
-                e.target.innerText = "3";
-                e.target.classList.add("one");
-            break;
+                case "3":
+                    console.log('Trafiles trojki');
+                    e.target.innerText = "3";
+                    e.target.classList.add("one");
+                    break;
 
-            case "4": console.log('Trafiles czworke');
-                e.target.innerText = "4";
-                e.target.classList.add("one");
-            break;
+                case "4":
+                    console.log('Trafiles czworke');
+                    e.target.innerText = "4";
+                    e.target.classList.add("one");
+                    break;
 
-            case "66": console.log('MINA :(');
-                e.target.innerText = "X";
-                e.target.classList.add("mine");
-            break;
-
+                case "66":
+                    console.log('MINA :(');
+                    e.target.innerText = "X";
+                    e.target.classList.add("mine");
+                    break;
+            }
+        } else if (e.button === 2) {
+            e.target.classList.add("achtung");
         }
     }
 
@@ -140,7 +149,7 @@ class Table extends Component {
     render() {
 
             const divs = this.state.neighbours.map((div, index) => {
-                return <div onClick={this.handleClick} className="block" id={div} key={index}>
+                return <div onClick={this.handleClick} onContextMenu={this.handleClick} className="block" id={div} key={index}>
                 </div>
             });
         return (
