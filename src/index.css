@@ -1,5 +1,28 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: sans-serif;
+}
+
+.AppMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.containerBlocks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  flex-flow: wrap;
+}
+
+.containerBlocks .block {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
 }
