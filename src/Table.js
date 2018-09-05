@@ -93,7 +93,55 @@ class Table extends Component {
             neighbours: this.drawNeighbors(),
         })
 
+    };
+
+
+
+    //sprawdzam czy do okoła zera jest inne zero czy cyfra
+    // jak jest cyfra to przerywam odsłanianie dookoła niej
+    // a jak zero to ono też odsłania do okoła siebie
+
+    searchZeros = (x, y) => {
+        for (let i = y - 1; i < y + 2; i++) {
+            for (let j = x - 1; j < x + 2; j++) {
+                if (i !== y || j !== x) {
+                    if (i >= 0 && i < this.state.rows && j >= 0 && j < this.state.columns) {
+                        if (this.state.globalArray[this.index(j, i)] == 0) {
+                            console.log("znalazlem");
+                            //destrukturyzacja
+                            const {index} = this;
+
+                                    let neighboursId1 = "style"+index(y-1, x+1);
+                                    const neighboursId2 = "style"+index(y, x+1);
+                                    const neighboursId3 = "style"+index(y+1, x+1);
+                                    const neighboursId4 = "style"+index(y-1, x);
+                                 //   const neighboursId5 = index(x, y);
+                                    const neighboursId6 = "style"+index(y+1, x);
+                                    const neighboursId7 = "style"+index(y-1, x-1);
+                                    const neighboursId8 = "style"+index(y, x-1);
+                                    const neighboursId9 = "style"+index(y+1, x-1);
+                            let array = [neighboursId1, neighboursId2, neighboursId3, neighboursId4, neighboursId6, neighboursId7, neighboursId8, neighboursId9];
+
+                            for (let i=0; i<array.length; i++) {
+                                this.refs[array[i]].classList.add("one");
+                            }
+                        //    const object = this.refs.style2;
+
+                        }
+                    }
+                }
+            }
+        }
     }
+
+
+    bigShow = (divId) => {
+        const width = this.state.columns;
+        const  x = divId % width;
+        const y = (divId - x) / width;
+        console.log(x, y);
+        this.searchZeros(x, y);
+    };
 
     componentWillMount () {
         this.drawMines();
@@ -104,13 +152,14 @@ class Table extends Component {
         clearTimeout(this.idTimeout);
     }
 
-    handleClick = (e) => {
+    handleClick = (e, index) => {
         e.preventDefault();
         if (e.button === 0) {
             switch (e.target.id) {
                 case "0":
                     console.log('Trafiles zera');
                     e.target.innerText = "0";
+                    this.bigShow(index);
                     e.target.classList.add("one");
                     break;
 
@@ -163,7 +212,7 @@ class Table extends Component {
     render() {
 
             const divs = this.state.neighbours.map((div, index) => {
-                return <div onClick={this.handleClick} onContextMenu={this.handleClick} className="block" id={div} key={index}>
+                return <div className="block" id={div} ref={"style"+index} key={index} onClick={(e) => this.handleClick(e, index)} onContextMenu={this.handleClick}>
                 </div>
             });
         return (
