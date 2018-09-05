@@ -40,14 +40,14 @@ class Table extends Component {
     };
 
     searchNeighbors = (x, y) => {
-        let liveNeighbours = 0;
+        let neighbours = 0;
         for (let i = y - 1; i < y + 2; i++) {
             for (let j = x - 1; j < x + 2; j++) {
                 if (i !== y || j !== x) {
                     if (i >= 0 && i < this.state.rows && j >= 0 && j < this.state.columns) {
                         if (this.state.globalArray[this.index(j, i)] == 66) {
 
-                            liveNeighbours++;
+                            neighbours++;
                         }
                     }
                 }
@@ -55,19 +55,19 @@ class Table extends Component {
         }
 
         if (this.state.globalArray[this.index(x, y)] == 0) {
-            if (liveNeighbours === 0) {
+            if (neighbours === 0) {
                 return 0;
-            } else if (liveNeighbours === 1) {
+            } else if (neighbours === 1) {
                 return 1;
-            } else if (liveNeighbours === 2) {
+            } else if (neighbours === 2) {
                 return 2;
-            } else if (liveNeighbours === 3) {
+            } else if (neighbours === 3) {
                 return 3;
-            } else if (liveNeighbours === 4) {
+            } else if (neighbours === 4) {
                 return 4;
-            } else if (liveNeighbours === 5) {
+            } else if (neighbours === 5) {
                 return 5;
-            } else if (liveNeighbours === 6) {
+            } else if (neighbours === 6) {
                 return 6;
             }
         } else if (this.state.globalArray[this.index(x, y)] == 66) {
@@ -208,7 +208,7 @@ class Table extends Component {
                         onClick={(e) => this.handleClick(e, index)} onContextMenu={this.handleClick}>
             </div>
         });
-        
+
         return (
             <div className="containerBlocks">
                 {divs}

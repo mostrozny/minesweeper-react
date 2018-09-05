@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px
 }
 
 .container {
@@ -22,6 +26,9 @@ body {
   width: 240px;
   height: 270px;
   background-color: gainsboro;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 5px 4px gray;
 }
 
 .scoreBoard {
@@ -35,18 +42,25 @@ body {
 .scoreBoard .reset {
   width: 20px;
   height: 20px;
-  background-color: darkslategray;
 }
 
 .scoreBoard .timer {
   border: 1px solid black;
   width: 80px;
   height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
 }
 .scoreBoard .score {
   border: 1px solid black;
   width: 80px;
   height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
 }
 
 .containerBlocks {
@@ -61,6 +75,9 @@ body {
   width: 20px;
   height: 20px;
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .one {
@@ -72,3 +89,26 @@ body {
 .achtung {
   background-color: brown;
 }
+
+.gameover {
+  background-image: url("./img/gameover.png");
+  background-size: cover;
+}
+
+.idk {
+  background-image: url("./img/idk.png");
+  background-size: cover;
+}
+
+.smile {
+  background-image: url("./img/smile.png");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.winner {
+  background-image: url("./img/winner.png");
+  background-size: cover;
+}
+

@@ -32,7 +32,7 @@ class ScoreBoard extends Component {
         return (
             <div className="scoreBoard" >
                 <div className="score">{this.state.score}</div>
-                <div className="reset" />
+                <div className="reset smile" />
                 <div className="timer">{this.state.timer}</div>
             </div>
         );
