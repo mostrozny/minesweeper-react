@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import { view, store } from 'react-easy-state';
+import Table from './Tables';
+
 
 class ScoreBoard extends Component {
-    constructor(props) {
-        super(props);
+    state = store({
+        timer: 0,
+        score: 100,
+    })
 
-
-        this.state = {
-            score: 0,
-            timer: 0,
-        }
-    }
 
     componentDidMount () {
         let time = 0;
@@ -27,8 +26,8 @@ class ScoreBoard extends Component {
     }
 
 
-    render() {
 
+    render() {
         return (
             <div className="scoreBoard" >
                 <div className="score">{this.state.score}</div>
@@ -39,4 +38,4 @@ class ScoreBoard extends Component {
     }
 }
 
-export default ScoreBoard;
+export default view(ScoreBoard);

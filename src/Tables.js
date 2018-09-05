@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import { view, store } from 'react-easy-state';
 
-class Table extends Component {
+
+
+class Tables extends Component {
     constructor(props) {
         super(props);
+
 
 
         this.state = {
@@ -12,6 +16,9 @@ class Table extends Component {
             neighbours: [],
         }
     }
+
+
+
 
     drawMines = () => {
         const columns = this.state.columns;
@@ -133,16 +140,12 @@ class Table extends Component {
         const x = divId % width;
         const y = (divId - x) / width;
         console.log(x, y);
-        (y > 0 && y < this.state.rows && x > 0 && x < this.state.columns) ? this.searchZeros(x, y) : console.log("top/bottom");
+        (y > 0 && y < this.state.rows-1 && x > 0 && x < this.state.columns-1) ? this.searchZeros(x, y) : console.log("top/bottom");
     };
 
     componentWillMount() {
         this.drawMines();
         this.drawNewArray();
-    };
-
-    componentWillUnmount() {
-        clearTimeout(this.idTimeout);
     };
 
     handleClick = (e, index) => {
@@ -194,6 +197,7 @@ class Table extends Component {
                     console.log('MINA :(');
                     e.target.innerText = "X";
                     e.target.classList.add("mine");
+
                     break;
             }
         } else if (e.button === 2) {
@@ -217,4 +221,4 @@ class Table extends Component {
     }
 }
 
-export default Table;
+export default Tables;
