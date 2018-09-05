@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Table extends Component {
     constructor(props) {
@@ -19,9 +19,9 @@ class Table extends Component {
 
         let divs = this.state.globalArray;
 
-        for (let i=0; i<columns*rows; i++) {
+        for (let i = 0; i < columns * rows; i++) {
             const mine = Math.floor((Math.random() * 20) + 1);
-            if (mine < 19) {
+            if (mine < 18) {
                 divs.push(0);
             } else {
                 divs.push(66)
@@ -36,7 +36,7 @@ class Table extends Component {
     };
 
     index = (x, y) => {
-        return this.state.columns*x + y;
+        return this.state.columns * x + y;
     };
 
     searchNeighbors = (x, y) => {
@@ -65,7 +65,7 @@ class Table extends Component {
                 return 3;
             } else if (liveNeighbours === 4) {
                 return 4;
-            }  else if (liveNeighbours === 5) {
+            } else if (liveNeighbours === 5) {
                 return 5;
             } else if (liveNeighbours === 6) {
                 return 6;
@@ -78,12 +78,11 @@ class Table extends Component {
     drawNeighbors = () => {
         const arr = [];
         //for(let global=0; global<this.state.columns*this.state.rows; global++){
-        for (let j = 0; j<this.state.columns; j++) {
-             for (let i = 0; i<this.state.rows; i++) {
-                 arr.push(this.searchNeighbors(i, j));
+        for (let j = 0; j < this.state.columns; j++) {
+            for (let i = 0; i < this.state.rows; i++) {
+                arr.push(this.searchNeighbors(i, j));
             }
         }
-
         console.log(arr);
         return arr;
     }
@@ -92,9 +91,7 @@ class Table extends Component {
         this.setState({
             neighbours: this.drawNeighbors(),
         })
-
     };
-
 
 
     //sprawdzam czy do okoła zera jest inne zero czy cyfra
@@ -107,50 +104,46 @@ class Table extends Component {
                 if (i !== y || j !== x) {
                     if (i >= 0 && i < this.state.rows && j >= 0 && j < this.state.columns) {
                         if (this.state.globalArray[this.index(j, i)] == 0) {
-                            console.log("znalazlem");
-                            //destrukturyzacja
                             const {index} = this;
+                            let neighboursId1 = "style" + index(y - 1, x + 1);
+                            const neighboursId2 = "style" + index(y, x + 1);
+                            const neighboursId3 = "style" + index(y + 1, x + 1);
+                            const neighboursId4 = "style" + index(y - 1, x);
+                            const neighboursId6 = "style" + index(y + 1, x);
+                            const neighboursId7 = "style" + index(y - 1, x - 1);
+                            const neighboursId8 = "style" + index(y, x - 1);
+                            const neighboursId9 = "style" + index(y + 1, x - 1);
 
-                                    let neighboursId1 = "style"+index(y-1, x+1);
-                                    const neighboursId2 = "style"+index(y, x+1);
-                                    const neighboursId3 = "style"+index(y+1, x+1);
-                                    const neighboursId4 = "style"+index(y-1, x);
-                                 //   const neighboursId5 = index(x, y);
-                                    const neighboursId6 = "style"+index(y+1, x);
-                                    const neighboursId7 = "style"+index(y-1, x-1);
-                                    const neighboursId8 = "style"+index(y, x-1);
-                                    const neighboursId9 = "style"+index(y+1, x-1);
                             let array = [neighboursId1, neighboursId2, neighboursId3, neighboursId4, neighboursId6, neighboursId7, neighboursId8, neighboursId9];
 
-                            for (let i=0; i<array.length; i++) {
+                            for (let i = 0; i < array.length; i++) {
                                 this.refs[array[i]].classList.add("one");
+                                this.refs[array[i]].innerText = this.refs[array[i]].id
                             }
-                        //    const object = this.refs.style2;
 
                         }
                     }
                 }
             }
         }
-    }
-
+    };
 
     bigShow = (divId) => {
         const width = this.state.columns;
-        const  x = divId % width;
+        const x = divId % width;
         const y = (divId - x) / width;
         console.log(x, y);
-        this.searchZeros(x, y);
+        (y > 0 && y < this.state.rows && x > 0 && x < this.state.columns) ? this.searchZeros(x, y) : console.log("top/bottom");
     };
 
-    componentWillMount () {
+    componentWillMount() {
         this.drawMines();
-            this.drawNewArray();
-    }
+        this.drawNewArray();
+    };
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         clearTimeout(this.idTimeout);
-    }
+    };
 
     handleClick = (e, index) => {
         e.preventDefault();
@@ -206,17 +199,18 @@ class Table extends Component {
         } else if (e.button === 2) {
             e.target.classList.add("achtung");
         }
-    }
+    };
 
 
     render() {
-
-            const divs = this.state.neighbours.map((div, index) => {
-                return <div className="block" id={div} ref={"style"+index} key={index} onClick={(e) => this.handleClick(e, index)} onContextMenu={this.handleClick}>
-                </div>
-            });
+        const divs = this.state.neighbours.map((div, index) => {
+            return <div className="block" id={div} ref={"style" + index} key={index}
+                        onClick={(e) => this.handleClick(e, index)} onContextMenu={this.handleClick}>
+            </div>
+        });
+        
         return (
-            <div className="containerBlocks" >
+            <div className="containerBlocks">
                 {divs}
             </div>
         );
