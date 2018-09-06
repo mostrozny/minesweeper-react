@@ -4,10 +4,13 @@ import appStore from './store.js';
 
 
 class ScoreBoard extends Component {
-    state = store({
-        timer: 0,
-        score: 100,
-    })
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            timer: 0,
+        }
+    }
 
 
     componentDidMount () {
@@ -30,7 +33,7 @@ class ScoreBoard extends Component {
     render() {
         return (
             <div className="scoreBoard" >
-                <div className="score">{appStore.score}</div>
+                <div className="score">{appStore.points}</div>
                 <div className="reset smile" />
                 <div className="timer">{this.state.timer}</div>
             </div>

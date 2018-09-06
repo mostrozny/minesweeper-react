@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { view, store } from 'react-easy-state';
-
+import { view } from 'react-easy-state'; // zeby store wiedzial ze zaszly zmiany
+import appStore from './store.js';
 
 
 class Tables extends Component {
@@ -143,7 +143,7 @@ class Tables extends Component {
         (y > 0 && y < this.state.rows-1 && x > 0 && x < this.state.columns-1) ? this.searchZeros(x, y) : console.log("top/bottom");
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.drawMines();
         this.drawNewArray();
     };
@@ -157,40 +157,47 @@ class Tables extends Component {
                     e.target.innerText = "0";
                     this.bigShow(index);
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 8;
                     break;
 
                 case "1":
                     console.log('Trafiles jedynki');
                     e.target.innerText = "1";
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 1;
                     break;
 
                 case "2":
                     console.log('Trafiles dwojki');
                     e.target.innerText = "2";
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 2;
                     break;
 
                 case "3":
                     console.log('Trafiles trojki');
                     e.target.innerText = "3";
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 3;
                     break;
 
                 case "4":
                     console.log('Trafiles czworke');
                     e.target.innerText = "4";
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 4;
                     break;
                 case "5":
                     console.log('Trafiles piatke');
                     e.target.innerText = "5";
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 5;
                     break;
                 case "6":
                     console.log('Trafiles szesc');
                     e.target.innerText = "6";
                     e.target.classList.add("one");
+                    appStore.points = appStore.points + 6;
                     break;
 
                 case "66":
@@ -221,4 +228,4 @@ class Tables extends Component {
     }
 }
 
-export default Tables;
+export default view(Tables);
