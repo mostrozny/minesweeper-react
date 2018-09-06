@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { view, store } from 'react-easy-state';
-import Table from './Tables';
+import { view } from 'react-easy-state'; // zeby store wiedzial ze zaszly zmiany
+import appStore from './store.js';
 
 
 class ScoreBoard extends Component {
@@ -30,7 +30,7 @@ class ScoreBoard extends Component {
     render() {
         return (
             <div className="scoreBoard" >
-                <div className="score">{this.state.score}</div>
+                <div className="score">{appStore.score}</div>
                 <div className="reset smile" />
                 <div className="timer">{this.state.timer}</div>
             </div>
