@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { view } from 'react-easy-state'; // zeby store wiedzial ze zaszly zmiany
-import appStore from './store.js';
+import React, {Component} from 'react';
+import {view} from 'react-easy-state';
+
+//only for block game
 
 class GameOver extends Component {
     render() {
         return (
-                <div className="GameOver">
+            <div className="GameOver">
 
-                </div>
+            </div>
         );
     }
 }

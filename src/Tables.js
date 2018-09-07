@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import { view } from 'react-easy-state'; // zeby store wiedzial ze zaszly zmiany
+import {view} from 'react-easy-state';
 import appStore from './store.js';
 
 
 class Tables extends Component {
     constructor(props) {
         super(props);
-
-
 
         this.state = {
             columns: 10,
@@ -16,9 +14,6 @@ class Tables extends Component {
             neighbours: [],
         }
     }
-
-
-
 
     drawMines = () => {
         const columns = this.state.columns;
@@ -38,8 +33,6 @@ class Tables extends Component {
         this.setState({
             globalArray: divs
         });
-
-        console.log(this.state.globalArray)
     };
 
     index = (x, y) => {
@@ -52,8 +45,7 @@ class Tables extends Component {
             for (let j = x - 1; j < x + 2; j++) {
                 if (i !== y || j !== x) {
                     if (i >= 0 && i < this.state.rows && j >= 0 && j < this.state.columns) {
-                        if (this.state.globalArray[this.index(j, i)] == 66) {
-
+                        if (this.state.globalArray[this.index(j, i)] === 66) {
                             neighbours++;
                         }
                     }
@@ -61,7 +53,7 @@ class Tables extends Component {
             }
         }
 
-        if (this.state.globalArray[this.index(x, y)] == 0) {
+        if (this.state.globalArray[this.index(x, y)] === 0) {
             if (neighbours === 0) {
                 return 0;
             } else if (neighbours === 1) {
@@ -77,20 +69,18 @@ class Tables extends Component {
             } else if (neighbours === 6) {
                 return 6;
             }
-        } else if (this.state.globalArray[this.index(x, y)] == 66) {
+        } else if (this.state.globalArray[this.index(x, y)] === 66) {
             return 66
         }
     };
 
     drawNeighbors = () => {
         const arr = [];
-        //for(let global=0; global<this.state.columns*this.state.rows; global++){
         for (let j = 0; j < this.state.columns; j++) {
             for (let i = 0; i < this.state.rows; i++) {
                 arr.push(this.searchNeighbors(i, j));
             }
         }
-        console.log(arr);
         return arr;
     }
 
@@ -110,7 +100,7 @@ class Tables extends Component {
             for (let j = x - 1; j < x + 2; j++) {
                 if (i !== y || j !== x) {
                     if (i >= 0 && i < this.state.rows && j >= 0 && j < this.state.columns) {
-                        if (this.state.globalArray[this.index(j, i)] == 0) {
+                        if (this.state.globalArray[this.index(j, i)] === 0) {
                             const {index} = this;
                             let neighboursId1 = "style" + index(y - 1, x + 1);
                             const neighboursId2 = "style" + index(y, x + 1);
@@ -127,7 +117,6 @@ class Tables extends Component {
                                 this.refs[array[i]].classList.add("one");
                                 this.refs[array[i]].innerText = this.refs[array[i]].id
                             }
-
                         }
                     }
                 }
@@ -137,10 +126,11 @@ class Tables extends Component {
 
     bigShow = (divId) => {
         const width = this.state.columns;
+        //get x and y from divId
         const x = divId % width;
         const y = (divId - x) / width;
-        console.log(x, y);
-        (y > 0 && y < this.state.rows-1 && x > 0 && x < this.state.columns-1) ? this.searchZeros(x, y) : console.log("top/bottom");
+
+        (y > 0 && y < this.state.rows - 1 && x > 0 && x < this.state.columns - 1) ? this.searchZeros(x, y) : console.log("top/bottom");
     };
 
     componentDidMount() {
@@ -235,7 +225,8 @@ class Tables extends Component {
     render() {
         const divs = this.state.neighbours.map((div, index) => {
             return <div className="block" id={div} ref={"style" + index} key={index}
-                        onClick={(e) => this.handleClick(e, index)} onMouseDown={this.handleMouseDown} onContextMenu={this.handleClick}>
+                        onClick={(e) => this.handleClick(e, index)} onMouseDown={this.handleMouseDown}
+                        onContextMenu={this.handleClick}>
             </div>
         });
 

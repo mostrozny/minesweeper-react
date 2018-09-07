@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { view } from 'react-easy-state'; // zeby store wiedzial ze zaszly zmiany
+import React, {Component} from 'react';
+import {view} from 'react-easy-state';
 import appStore from './store.js';
 
 
@@ -13,7 +13,7 @@ class ScoreBoard extends Component {
     }
 
 
-    componentDidMount () {
+    componentDidMount() {
         let time = 0;
         this.idInterval = setInterval(() => {
             time++;
@@ -24,36 +24,36 @@ class ScoreBoard extends Component {
 
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         clearInterval(this.idInterval);
     }
 
 
     render() {
-         const gameOverClearInterval = () => {
+        const gameOverClearInterval = () => {
             if (appStore.gameOver === true) {
                 clearInterval(this.idInterval)
             }
-        }
+        };
         gameOverClearInterval();
 
-         const gameEmots = () => {
-             if (appStore.icon === "smile") {
-                 return "reset smile"
-             } else if (appStore.icon === "gameover") {
-                 return "reset gameover"
-             } else if (appStore.icon === "idk") {
-                 return "reset idk"
-             } else if (appStore.icon === "winner") {
-                 gameOverClearInterval();
-                 return "reset winner"
-             }
-         }
+        const gameEmots = () => {
+            if (appStore.icon === "smile") {
+                return "reset smile"
+            } else if (appStore.icon === "gameover") {
+                return "reset gameover"
+            } else if (appStore.icon === "idk") {
+                return "reset idk"
+            } else if (appStore.icon === "winner") {
+                gameOverClearInterval();
+                return "reset winner"
+            }
+        };
 
         return (
-            <div className="scoreBoard" >
+            <div className="scoreBoard">
                 <div className="score">{appStore.points}</div>
-                <div className={gameEmots()} />
+                <div className={gameEmots()}/>
                 <div className="timer">{this.state.timer}</div>
             </div>
         );
