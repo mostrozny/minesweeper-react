@@ -29,8 +29,14 @@ class ScoreBoard extends Component {
     }
 
 
-
     render() {
+         const gameOverClearInterval = () => {
+            if (appStore.gameOver === true) {
+                clearInterval(this.idInterval)
+            }
+        }
+
+        gameOverClearInterval();
         return (
             <div className="scoreBoard" >
                 <div className="score">{appStore.points}</div>

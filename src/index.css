@@ -19,6 +19,7 @@ body {
 }
 
 .AppMain {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +30,13 @@ body {
   border: 1px solid black;
   border-radius: 15px;
   box-shadow: 5px 4px gray;
+}
+
+.GameOver {
+  position: absolute;
+  top: 40px;
+  width: 220px;
+  height: 220px;
 }
 
 .scoreBoard {

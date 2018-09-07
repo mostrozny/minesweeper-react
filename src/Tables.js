@@ -153,58 +153,66 @@ class Tables extends Component {
         if (e.button === 0) {
             switch (e.target.id) {
                 case "0":
-                    console.log('Trafiles zera');
-                    e.target.innerText = "0";
-                    this.bigShow(index);
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 8;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "0";
+                        this.bigShow(index);
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 8;
+                    }
                     break;
 
                 case "1":
-                    console.log('Trafiles jedynki');
-                    e.target.innerText = "1";
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 1;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "1";
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 1;
+                    }
                     break;
 
                 case "2":
-                    console.log('Trafiles dwojki');
-                    e.target.innerText = "2";
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 2;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "2";
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 2;
+                    }
                     break;
 
                 case "3":
-                    console.log('Trafiles trojki');
-                    e.target.innerText = "3";
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 3;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "3";
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 3;
+                    }
                     break;
 
                 case "4":
-                    console.log('Trafiles czworke');
-                    e.target.innerText = "4";
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 4;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "4";
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 4;
+                    }
                     break;
                 case "5":
-                    console.log('Trafiles piatke');
-                    e.target.innerText = "5";
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 5;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "5";
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 5;
+                    }
                     break;
                 case "6":
-                    console.log('Trafiles szesc');
-                    e.target.innerText = "6";
-                    e.target.classList.add("one");
-                    appStore.points = appStore.points + 6;
+                    if (e.target.classList.contains("one") === false) {
+                        e.target.innerText = "6";
+                        e.target.classList.add("one");
+                        appStore.points = appStore.points + 6;
+                    }
                     break;
 
                 case "66":
-                    console.log('MINA :(');
-                    e.target.innerText = "X";
-                    e.target.classList.add("mine");
-
+                    if (e.target.classList.contains("mine") === false) {
+                        e.target.innerText = "X";
+                        e.target.classList.add("mine");
+                        appStore.gameOver = true;
+                    }
                     break;
             }
         } else if (e.button === 2) {
