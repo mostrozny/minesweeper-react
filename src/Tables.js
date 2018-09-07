@@ -148,8 +148,13 @@ class Tables extends Component {
         this.drawNewArray();
     };
 
+    handleMouseDown = () => {
+        appStore.icon = "idk"
+    };
+
     handleClick = (e, index) => {
         e.preventDefault();
+        appStore.icon = "smile";
         if (e.button === 0) {
             switch (e.target.id) {
                 case "0":
@@ -212,6 +217,7 @@ class Tables extends Component {
                         e.target.innerText = "X";
                         e.target.classList.add("mine");
                         appStore.gameOver = true;
+                        appStore.icon = "gameover";
                     }
                     break;
             }
@@ -224,7 +230,7 @@ class Tables extends Component {
     render() {
         const divs = this.state.neighbours.map((div, index) => {
             return <div className="block" id={div} ref={"style" + index} key={index}
-                        onClick={(e) => this.handleClick(e, index)} onContextMenu={this.handleClick}>
+                        onClick={(e) => this.handleClick(e, index)} onMouseDown={this.handleMouseDown} onContextMenu={this.handleClick}>
             </div>
         });
 

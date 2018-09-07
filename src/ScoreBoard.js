@@ -35,12 +35,24 @@ class ScoreBoard extends Component {
                 clearInterval(this.idInterval)
             }
         }
-
         gameOverClearInterval();
+
+         const gameEmots = () => {
+             if (appStore.icon === "smile") {
+                 return "reset smile"
+             } else if (appStore.icon === "gameover") {
+                 return "reset gameover"
+             } else if (appStore.icon === "idk") {
+                 return "reset idk"
+             } else if (appStore.icon === "winner") {
+                 return "reset winner"
+             }
+         }
+
         return (
             <div className="scoreBoard" >
                 <div className="score">{appStore.points}</div>
-                <div className="reset smile" />
+                <div className={gameEmots()} />
                 <div className="timer">{this.state.timer}</div>
             </div>
         );
