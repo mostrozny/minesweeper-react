@@ -45,6 +45,7 @@ class ScoreBoard extends Component {
              } else if (appStore.icon === "idk") {
                  return "reset idk"
              } else if (appStore.icon === "winner") {
+                 gameOverClearInterval();
                  return "reset winner"
              }
          }

@@ -154,7 +154,12 @@ class Tables extends Component {
 
     handleClick = (e, index) => {
         e.preventDefault();
-        appStore.icon = "smile";
+        if (appStore.points > 140) {
+            appStore.icon = "winner"
+        } else {
+            appStore.icon = "smile";
+        }
+
         if (e.button === 0) {
             switch (e.target.id) {
                 case "0":
