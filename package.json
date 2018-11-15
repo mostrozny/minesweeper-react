@@ -2,13 +2,20 @@
   "name": "minesweeper",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mostrozny.github.io/minesweeper-react",
+
   "dependencies": {
+    "gh-pages": "^1.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-easy-state": "^5.1.0",
-    "react-scripts": "1.1.5"
-  },
+    "react-scripts": "1.1.5",
+    "merge": ">=1.2.1",
+
+},
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
