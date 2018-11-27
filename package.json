@@ -10,8 +10,7 @@
     "react-dom": "^16.4.2",
     "react-easy-state": "^5.1.0",
     "react-scripts": "1.1.5",
-    "merge": ">=1.2.1",
-
+    "merge": ">=1.2.1"
 },
   "scripts": {
     "predeploy": "npm run build",
